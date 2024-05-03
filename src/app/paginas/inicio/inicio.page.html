@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Lista de Pokémon
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar color="primary" animated="true" placeholder="Ingrese nombre o id"
+   [(ngModel)]="searchTerm" (ionChange)="filterPokemon()"></ion-searchbar>
+      <ion-list>
+      <ion-item *ngFor="let pokemon of filteredPokemonList"  [routerLink]='pokemon.Path' >
+          <img [src]="pokemon.imageURL" alt="Pokemon">
+          <ion-card-content>
+            <ion-card-title>{{ pokemon.id }} - {{ pokemon.name }}</ion-card-title>
+          </ion-card-content>
+      </ion-item>
+    </ion-list>
+</ion-content>
+
+<app-pie></app-pie>

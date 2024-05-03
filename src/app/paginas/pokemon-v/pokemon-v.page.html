@@ -1,0 +1,32 @@
+<app-encabezado titulo={{name}}></app-encabezado>
+
+<ion-content>
+  <ion-card *ngIf="pokemon">
+    <ion-card-content>
+      <ion-img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }}"></ion-img>
+      <ion-card-title>{{ pokemon.name }}</ion-card-title>
+      <ion-card-subtitle>
+        Peso: {{ pokemon.weight }}
+      </ion-card-subtitle>
+      <ion-card-subtitle>
+          Tipos:
+        <ion-badge class="tab" *ngFor="let type of pokemon.types">{{ type.type.name }}</ion-badge>
+      </ion-card-subtitle>
+      <ion-card-subtitle>
+        Movimientos:
+      <ion-badge class="tab" *ngFor="let moveu of moves">{{ moveu.move.name }}</ion-badge>
+    </ion-card-subtitle>
+      <ion-list class="sprites">
+        <ion-item>
+          <ion-row>
+            <ion-col size="auto" *ngFor="let sprite of sprites">
+              <ion-img [src]="sprite"></ion-img>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<app-pie></app-pie>
