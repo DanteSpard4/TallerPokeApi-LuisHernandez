@@ -11,11 +11,14 @@ export class InicioPage implements OnInit {
   pokemonList: any[] = [];
   searchTerm: string = '';
   filteredPokemonList: any[] = [];
+  productosList: any;
+  filteredProductosList: any[] = [];
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.getPokemon();
+    this.getProductos();
   }
 
   getPokemon() {
@@ -34,6 +37,32 @@ export class InicioPage implements OnInit {
         console.error('Error:', error);
       }
     );
+  }
+
+  getProductos() {
+    this.http.get<any>('http://localhost:8080/api/producto').subscribe(
+      (data: any) => {
+        this.productosList = data.map((producto: any) => {
+          return producto;
+        });
+        this.filteredProductosList = [...this.productosList];
+        console.log(this.productosList);
+      },
+      (error: any) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
+  filterProductos() {
+    if (this.searchTerm.trim() === '') {
+      this.filteredProductosList = [...this.productosList];
+    } else {
+      this.filteredProductosList = this.productosList.filter((producto: any) =>
+        producto.proveedor.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        producto.unidad.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
   }
 
   filterPokemon() {

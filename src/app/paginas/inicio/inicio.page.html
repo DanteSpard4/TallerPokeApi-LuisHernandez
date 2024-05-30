@@ -1,19 +1,24 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Lista de Pokémon
+      Lista de Productos
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-searchbar color="primary" animated="true" placeholder="Ingrese nombre o id"
-   [(ngModel)]="searchTerm" (ionChange)="filterPokemon()"></ion-searchbar>
+  <ion-searchbar color="primary" animated="true" placeholder="Ingrese nombre de producto o id"
+   [(ngModel)]="searchTerm" (ionChange)="filterProductos()"></ion-searchbar>
       <ion-list>
-      <ion-item *ngFor="let pokemon of filteredPokemonList"  [routerLink]='pokemon.Path' >
-          <img [src]="pokemon.imageURL" alt="Pokemon">
+      <ion-item *ngFor="let producto of filteredProductosList"  [routerLink]='producto.Path' >
           <ion-card-content>
-            <ion-card-title>{{ pokemon.id }} - {{ pokemon.name }}</ion-card-title>
+            <ion-card-title>{{ producto.id }} - {{ producto.proveedor }}</ion-card-title>
+            <p>Presupuesto: {{ producto.presupuesto }}</p>
+            <p>Unidad: {{ producto.unidad }}</p>
+            <p>Cantidad: {{ producto.cantidad }}</p>
+            <p>Valor Unitario: {{ producto.valorUnitario }}</p>
+            <p>Valor Total: {{ producto.valorTotal }}</p>
+            <p>Fecha de Adquisición: {{ producto.fechaAdquisicion }}</p>
           </ion-card-content>
       </ion-item>
     </ion-list>
