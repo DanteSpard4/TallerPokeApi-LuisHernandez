@@ -3,11 +3,16 @@
     <ion-title>
       Lista de Productos
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openForm()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-searchbar color="primary" animated="true" placeholder="Ingrese nombre de producto o id"
+  <ion-searchbar color="primary" animated="true" placeholder="Ingrese nombre de producto o unidad"
    [(ngModel)]="searchTerm" (ionChange)="filterProductos()"></ion-searchbar>
       <ion-list>
       <ion-item *ngFor="let producto of filteredProductosList"  [routerLink]='producto.Path' >
@@ -15,6 +20,7 @@
             <ion-card-title>{{ producto.id }} - {{ producto.proveedor }}</ion-card-title>
             <p>Presupuesto: {{ producto.presupuesto }}</p>
             <p>Unidad: {{ producto.unidad }}</p>
+            <p>Producto: {{ producto.producto }}</p>
             <p>Cantidad: {{ producto.cantidad }}</p>
             <p>Valor Unitario: {{ producto.valorUnitario }}</p>
             <p>Valor Total: {{ producto.valorTotal }}</p>

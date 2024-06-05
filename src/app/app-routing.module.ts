@@ -12,8 +12,12 @@ const routes: Routes = [
     loadChildren: () => import('./paginas/inicio/inicio.module').then( m => m.InicioPageModule)
   },
   {
-    path: 'pokemon-v/:id',
-    loadChildren: () => import('./paginas/pokemon-v/pokemon-v.module').then( m => m.PokemonVPageModule)
+    path: 'producto/:id',
+    loadChildren: () => import('./paginas/producto/producto.module').then( m => m.ProductoPageModule)
+  },
+  {
+    path: 'form',
+    loadChildren: () => import('./paginas/form/form.module').then( m => m.FormPageModule)
   },
 ];
 

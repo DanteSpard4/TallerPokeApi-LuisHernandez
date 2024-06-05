@@ -1,0 +1,50 @@
+<app-encabezado></app-encabezado>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ producto.producto }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ producto.producto }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <ion-item>
+          <ion-label>Presupuesto</ion-label>
+          <ion-input class="input-right" type="number" [(ngModel)]="producto.presupuesto" name="presupuesto"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Unidad</ion-label>
+          <ion-input class="input-right" type="text" [(ngModel)]="producto.unidad" name="unidad"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Cantidad</ion-label>
+          <ion-input class="input-right" type="text" [(ngModel)]="producto.cantidad" name="cantidad"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Valor Unitario</ion-label>
+          <ion-input class="input-right" type="text" [(ngModel)]="producto.valorUnitario" name="valorUnitario"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Valor Total</ion-label>
+          <ion-input class="input-right" type="text" [(ngModel)]="producto.valorTotal" name="valorTotal"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Fecha de Adquisición</ion-label>
+          <ion-datetime [ngModelOptions]="{standalone: true}" displayFormat="YYYY-MM-DD" [(ngModel)]="producto.fechaAdquisicion"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label>Proveedor</ion-label>
+          <ion-input class="input-right" type="text" [(ngModel)]="producto.proveedor" name="proveedor"></ion-input>
+        </ion-item>
+        <ion-button expand="full" type="submit">Guardar cambios</ion-button>
+        <ion-button color="danger" (click)="onDelete()">Eliminar</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

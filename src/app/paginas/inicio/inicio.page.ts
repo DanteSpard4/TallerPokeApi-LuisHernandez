@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -14,35 +15,21 @@ export class InicioPage implements OnInit {
   productosList: any;
   filteredProductosList: any[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
-    this.getPokemon();
+    this.getProductos();
+  }
+  
+  ionViewWillEnter() {
     this.getProductos();
   }
 
-  getPokemon() {
-    this.http.get<any>('https://pokeapi.co/api/v2/pokemon?limit=30&offset=0').subscribe(
-      (data: any) => {
-        this.pokemonList = data.results.map((pokemon: any) => {
-          const id = pokemon.url.split('/').slice(-2, -1)[0]; 
-          pokemon.Path = `/pokemon-v/${id}`;
-          pokemon.id = id;
-          pokemon.imageURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
-          return pokemon;
-        });
-        this.filteredPokemonList = [...this.pokemonList];
-      },
-      (error: any) => {
-        console.error('Error:', error);
-      }
-    );
-  }
-
   getProductos() {
-    this.http.get<any>('http://localhost:8080/api/producto').subscribe(
+    this.http.get<any>('http://54.160.238.164:8080/api/producto').subscribe(
       (data: any) => {
         this.productosList = data.map((producto: any) => {
+          producto.Path = `/producto/${producto.id}`;
           return producto;
         });
         this.filteredProductosList = [...this.productosList];
@@ -65,15 +52,11 @@ export class InicioPage implements OnInit {
     }
   }
 
-  filterPokemon() {
-    if (this.searchTerm.trim() === '') {
-      this.filteredPokemonList = [...this.pokemonList];
-    } else {
-      this.filteredPokemonList = this.pokemonList.filter((pokemon: any) =>
-        pokemon.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        pokemon.url.includes(this.searchTerm.toLowerCase())
-      );
-    }
-  }
 
+
+  openForm() {
+    //abre el ormulario
+    this.router.navigate(['/form']);
+
+  }
 }
