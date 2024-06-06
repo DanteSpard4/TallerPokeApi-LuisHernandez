@@ -26,7 +26,7 @@ export class ProductoPage implements OnInit {
 
   //getProducto
   getProducto(id: string) {
-    const url = `http://localhost:8080/api/producto/${id}`;
+    const url = `http://34.172.239.168:8080/api/producto/${id}`;
     this.http.get(url).subscribe((response: any) => {
       this.producto = response;
       console.log('producto es:', this.producto);
@@ -34,7 +34,7 @@ export class ProductoPage implements OnInit {
   }
 
   onSubmit(values: NgForm) {
-    this.http.put(`http://localhost:8080/api/producto/${this.id}`, values.value)
+    this.http.put(`http://34.172.239.168:8080/api/producto/${this.id}`, values.value)
       .subscribe((response: any) => {
         console.log('Respuesta de la API', response);
         this.router.navigate(['/inicio']);
@@ -44,7 +44,7 @@ export class ProductoPage implements OnInit {
   }
 
   onDelete() {
-    this.http.delete(`http://localhost:8080/api/producto/${this.id}`)
+    this.http.delete(`http://34.172.239.168:8080/api/producto/${this.id}`)
       .subscribe((response: any) => {
         console.log('Respuesta de la API', response);
         this.router.navigate(['/inicio']);

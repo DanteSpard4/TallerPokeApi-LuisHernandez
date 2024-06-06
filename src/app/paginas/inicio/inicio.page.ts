@@ -26,7 +26,7 @@ export class InicioPage implements OnInit {
   }
 
   getProductos() {
-    this.http.get<any>('http://54.160.238.164:8080/api/producto').subscribe(
+    this.http.get<any>('http://34.172.239.168:8080/api/producto').subscribe(
       (data: any) => {
         this.productosList = data.map((producto: any) => {
           producto.Path = `/producto/${producto.id}`;
